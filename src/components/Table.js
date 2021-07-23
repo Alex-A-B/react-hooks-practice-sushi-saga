@@ -6,10 +6,16 @@ function Table({ plates = [] }) {
     <div key={index} className="empty-plate" style={{ top: -7 * index }} />
   ));
 
+  function wallet() {
+    if (!plates.length) {
+      return 100
+    } return 100 - plates.reduce((a, b) => a + b)
+  } 
+
   return (
     <>
       <h1 className="remaining">
-        You have: ${/* Give me how much money I have left */} remaining!
+        You have: ${wallet()} remaining!
       </h1>
       <div className="table">
         <div className="stack">{emptyPlates}</div>

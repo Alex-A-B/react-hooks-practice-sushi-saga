@@ -7,6 +7,7 @@ const API = "http://localhost:3001/sushis";
 
 function App() {
   const [getSushi, setGetSushi] = useState([])
+  const [getPlates, setGetPlates] = useState([])
 
 useEffect( () => {
 fetch(API)
@@ -15,11 +16,15 @@ fetch(API)
 .catch(error => console.log("server not working - start it up"))
 }, [])
 
+function handleGetPlates(price){
+  console.log(price)
+  setGetPlates([...getPlates])
+}
 
   return (
     <div className="app">
-      <SushiContainer sushis={getSushi} />
-      <Table />
+      <SushiContainer sushis={getSushi} plateHandler={handleGetPlates} />
+      <Table plates={getPlates} />
     </div>
   );
 }

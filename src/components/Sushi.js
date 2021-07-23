@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 
-function Sushi( { image, name, price}) {
+function Sushi( { image, name, price, plateHandler }) {
+  const [canEat, setCanEat] = useState(true)
+  
+  function handleEatDish(e) {
+    console.log()
+    plateHandler(e.target)
+    setCanEat(false)
+  }
+
   return (
     <div className="sushi">
-      <div className="plate" onClick={/* Give me a callback! */ null}>
+      <div className="plate" onClick={handleEatDish}>
         {/* Tell me if this sushi has been eaten! */}
-        {false ? null : (
+        {canEat === false ? null : (
           <img
             src={image} 
             alt={name} 
@@ -14,7 +22,7 @@ function Sushi( { image, name, price}) {
         )}
       </div>
       <h4 className="sushi-details">
-        {/* Give me a name! */}{name} - ${/* Give me a price! */}{price}
+        {name} - ${price}
       </h4>
     </div>
   );
