@@ -8,6 +8,7 @@ const API = "http://localhost:3001/sushis";
 function App() {
   const [getSushi, setGetSushi] = useState([])
   const [getPlates, setGetPlates] = useState([])
+  const [walletAmount, setWalletAmount] = useState(100)
 
 useEffect( () => {
 fetch(API)
@@ -17,14 +18,15 @@ fetch(API)
 }, [])
 
 function handleGetPlates(price){
-  console.log(price)
-  setGetPlates([...getPlates])
+  console.log(getPlates)
+  setGetPlates([...getPlates, parseInt(price)])
+  setWalletAmount(walletAmount - parseInt(price))
 }
 
   return (
     <div className="app">
       <SushiContainer sushis={getSushi} plateHandler={handleGetPlates} />
-      <Table plates={getPlates} />
+      <Table plates={getPlates} wallet={walletAmount} />
     </div>
   );
 }

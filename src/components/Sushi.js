@@ -3,9 +3,8 @@ import React, { useState } from "react";
 function Sushi( { image, name, price, plateHandler }) {
   const [canEat, setCanEat] = useState(true)
   
-  function handleEatDish(e) {
-    console.log()
-    plateHandler(e.target)
+  function handleEatDish() {
+    plateHandler(`${price}`)
     setCanEat(false)
   }
 
