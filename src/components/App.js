@@ -18,14 +18,13 @@ fetch(API)
 }, [])
 
 function handleGetPlates(price){
-  console.log(getPlates)
   setGetPlates([...getPlates, parseInt(price)])
   setWalletAmount(walletAmount - parseInt(price))
 }
 
   return (
     <div className="app">
-      <SushiContainer sushis={getSushi} plateHandler={handleGetPlates} />
+      <SushiContainer sushis={getSushi} plateHandler={handleGetPlates} wallet={walletAmount} />
       <Table plates={getPlates} wallet={walletAmount} />
     </div>
   );

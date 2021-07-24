@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
-function Sushi( { image, name, price, plateHandler }) {
+function Sushi( { image, name, price, plateHandler, wallet }) {
   const [canEat, setCanEat] = useState(true)
   
   function handleEatDish() {
-    plateHandler(`${price}`)
-    setCanEat(false)
+        if (wallet - parseInt(`${price}`) < 0){
+      return null
+    } console.log(wallet) 
+    return (plateHandler(`${price}`), setCanEat(false))
   }
 
   return (
